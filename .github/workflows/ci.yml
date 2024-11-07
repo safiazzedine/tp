@@ -1,28 +1,31 @@
-name: CI
+name: CI Pipeline
 
 on:
   push:
-    branches:
-      - main
-  pull_request:
     branches:
       - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+    - name: Checkout repository
+      uses: actions/checkout@v3  # Mise à jour vers la version v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '18'
+    - name: Set up Node.js
+      uses: actions/setup-node@v3  # Mise à jour vers la version v3
+      with:
+        node-version: '16'  # Vous pouvez spécifier Node.js 16 ou une version plus récente
 
-      - name: Install dependencies
-        run: npm install
+    - name: Install dependencies
+      run: npm ci
 
-      - name: Run tests
-        run: npm test
+    - name: Set correct permissions for jest
+      run: chmod +x node_modules/.bin/jest
+
+    - name: Run tests
+      run: npm test
+
+    - name: Check Node.js version
+      run: node -v
