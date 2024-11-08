@@ -11,12 +11,12 @@ jobs:
     
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3  # Mise à jour vers la version v3
+      uses: actions/checkout@v3  
 
     - name: Set up Node.js
-      uses: actions/setup-node@v3  # Mise à jour vers la version v3
+      uses: actions/setup-node@v3  
       with:
-        node-version: '16'  # Vous pouvez spécifier Node.js 16 ou une version plus récente
+        node-version: '16'  
 
     - name: Install dependencies
       run: npm ci
